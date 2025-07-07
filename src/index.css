@@ -1,0 +1,107 @@
+body {
+    margin: 0;
+    min-height: 100vh;
+}
+
+
+.card {
+    background-color: blue;
+    color: white;
+    padding: 0px;
+    text-align: center;
+    min-height: 3rem;
+    border: white, solid;
+    cursor: pointer;
+  }
+  
+  .category {
+    display: flex;
+    flex-direction: column;
+    height: 10wh;
+    width: 14wh;
+    flex: 1;
+    align-items: center;
+    margin-bottom: 0rem;
+  }
+
+  
+  .container {
+    display: flex;
+    margin-bottom: 0rem;
+  }
+  
+  .title {
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  
+  .category-title {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .category-name {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+  }
+
+  body {
+    background-color: rgb(29, 41, 53);
+    color: white;
+  }
+
+  .newGame {
+    color: rgb(198, 198, 198);
+  }
+
+  .selectGame {
+    color: rgb(198, 198, 198);;
+  }
+
+  .warning {
+    background-color: white;
+    color: black;
+  }
+
+
+  .counter {
+    background-color: white;
+    margin-top: 1rem;
+    margin-bottom: 0rem;
+    height: 8rem;
+    width: 9rem;
+    color: rgb(0, 26, 71);
+  }
+
+
+  .counter-container {
+    position: fixed;
+    text-align: center;
+    display: flex;
+    gap: 1rem;
+    bottom: 0;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    z-index: 100000;
+  }
+
+
+  .value-buttons button{
+    display: grid;
+    gap: 10.5rem;
+    border: white
+  }
+
+  .add-button {
+    background-color: green;
+  }
+
+  .remove-button {
+    background-color: red;
+  }
+
+
+
