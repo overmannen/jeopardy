@@ -1,6 +1,5 @@
 import { createContext, JSX, useState } from "react";
 import Category from "./Category";
-import { PointsCounter } from "./PointsCounter";
 import { PointsCounterContainer } from "./PointsCounterContainer";
 
 type RewardContextType = {

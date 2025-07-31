@@ -1,6 +1,11 @@
-body {
+#root {
     margin: 0;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+    background-color: rgb(1, 19, 106);
+    color: white
 }
 
 
@@ -9,15 +14,16 @@ body {
     color: white;
     padding: 0px;
     text-align: center;
-    min-height: 3rem;
+    min-height: 10rem;
     border: white, solid;
     cursor: pointer;
+    max-height: 15vh;
   }
   
   .category {
     display: flex;
     flex-direction: column;
-    height: 10wh;
+    height: 80vh;
     width: 14wh;
     flex: 1;
     align-items: center;
@@ -89,10 +95,10 @@ body {
   }
 
 
-  .value-buttons button{
+  .value-buttons {
     display: grid;
     gap: 10.5rem;
-    border: white
+    border: 1px solid white;
   }
 
   .add-button {
@@ -103,5 +109,37 @@ body {
     background-color: red;
   }
 
+  .options-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-size: 4rem;
+  }
 
+  .team-names {
+    margin-left: 2rem;
+    height: 4rem;
+    font-size: 4rem;
+  }
+
+  .submit-teams {
+    margin-left: 2rem;
+    height: 4rem;
+    font-size: 3rem;
+    background-color: green;
+    color: white;
+  }
+
+  .authentication-container {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 1rem;
+  }
+
+
+  .app-container {
+    padding-left: 0.5rem;
+  }
 

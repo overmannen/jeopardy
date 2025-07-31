@@ -24,17 +24,21 @@ export const Options = ({ teamsSubmit }: OptionsProps) => {
   };
 
   return (
-    <div>
-      <label htmlFor="team-name">Team Names (single comma between names)</label>
+    <div className="options-container">
+      <label htmlFor="team-names">
+        Team Names (single comma between names)
+      </label>
       <input
         type="text"
-        className="team-name"
+        className="team-names"
         id="team-name"
         value={teamNamesInput}
         onChange={handleInput}
         placeholder="Team 1, Team 2, Team 3"
       />
-      <button onClick={handleSubmit}>Ready</button>
+      <button onClick={handleSubmit} className="submit-teams">
+        Ready
+      </button>
     </div>
   );
 };

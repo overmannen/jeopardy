@@ -7,7 +7,6 @@ type PointsCounterProps = {
 
 export const PointsCounter = ({ teamName }: PointsCounterProps) => {
   const [points, setPoints] = useState(0);
-  const [numberToAdd, setNumberToAdd] = useState(100);
 
   const context = useContext(RewardContext);
 

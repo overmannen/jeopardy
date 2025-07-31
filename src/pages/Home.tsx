@@ -1,13 +1,28 @@
-import { createContext, useState } from "react";
+import { useEffect, useState } from "react";
 import { GameViews } from "../components/GameViews";
+import { onAuthStateChanged, User } from "firebase/auth";
+import { auth } from "../firebase/config";
+import { SignInWithGoogle } from "../components/Authentication/SignInWithGoogle";
+import { LogoutGoogle } from "../components/Authentication/LogoutGoogle";
 
 export const Home = () => {
-  const [teamNames, setTeamNames] = useState<[string]>([""]);
+  const [user, setUser] = useState<null | User>(null);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+    return () => unsubscribe();
+  }, []);
 
   return (
     <div>
-      <h1>Home</h1>
-      <p>Welcome User</p>
+      <h1>Jeopardy</h1>
+      <div className="authentication-container">
+        <SignInWithGoogle />
+        {user && <LogoutGoogle />}
+      </div>
+      {user ? <p>Welcome {user.displayName}</p> : <p>Not logged in</p>}
       <p>
         Make a{" "}
         <a className="newGame" href="/game">

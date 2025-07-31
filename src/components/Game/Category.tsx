@@ -1,4 +1,4 @@
-import { JSX, useEffect, useState } from "react";
+import { JSX } from "react";
 import Card from "./Card";
 
 type CategoryProps = {
@@ -7,11 +7,6 @@ type CategoryProps = {
 
 const Category = ({ categoryName }: CategoryProps): JSX.Element => {
   const rewards = [100, 200, 300, 400, 500];
-  const [selectedReward, setSelectedReward] = useState(0);
-
-  const setPoints = (value: number) => {
-    setSelectedReward(value);
-  };
 
   return (
     <>
