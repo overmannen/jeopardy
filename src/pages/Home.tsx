@@ -3,11 +3,10 @@ import { GameViews } from "../components/GameViews";
 import { onAuthStateChanged, User } from "firebase/auth";
 import { auth } from "../firebase/config";
 import { SignInWithGoogle } from "../components/Authentication/SignInWithGoogle";
-import { LogoutGoogle } from "../components/Authentication/LogOutGoogle";
+import { LogoutGoogle } from "../components/Authentication/LogoutGoogle";
 
 export const Home = () => {
   const [user, setUser] = useState<null | User>(null);
-  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
