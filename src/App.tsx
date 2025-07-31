@@ -5,7 +5,7 @@ import { Home } from "./pages/Home";
 
 function App() {
   return (
-    <>
+    <div className="app-container">
       <BrowserRouter>
         <Navbar />
         <Routes>
@@ -14,7 +14,7 @@ function App() {
         </Routes>
       </BrowserRouter>
       <div id="modal-root"></div>
-    </>
+    </div>
   );
 }
 

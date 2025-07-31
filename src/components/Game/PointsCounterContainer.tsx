@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { PointsCounter } from "./PointsCounter";
 
 type PointsCounterContainerProps = {

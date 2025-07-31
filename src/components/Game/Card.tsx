@@ -1,4 +1,4 @@
-import { createContext, JSX, useContext, useEffect, useState } from "react";
+import { JSX, useContext, useEffect, useState } from "react";
 import { MdOutlineTransitEnterexit } from "react-icons/md";
 import { RewardContext } from "./Container";
 
