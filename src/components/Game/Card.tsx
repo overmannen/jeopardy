@@ -1,5 +1,6 @@
 import { JSX, useContext, useEffect, useState } from "react";
 import { MdOutlineTransitEnterexit } from "react-icons/md";
+import ReactDOM from "react-dom";
 import { RewardContext } from "./Container";
 
 type CardProps = {
@@ -38,49 +39,78 @@ const Card = ({ reward, rewardValue }: CardProps): JSX.Element => {
     };
     if (isFullscreen) {
       document.addEventListener("keydown", handleEscapeKey);
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
     }
     return () => {
       document.removeEventListener("keydown", handleEscapeKey);
+      document.body.style.overflow = "auto";
     };
   }, [isFullscreen]);
 
-  return (
+  const FullscreenCard = () => (
     <div
-      onClick={() => handleClick(true, rewardValue)}
-      className="card"
+      className="card fullscreen-card"
       style={{
-        top: isFullscreen ? "0" : "auto",
-        left: isFullscreen ? "0" : "auto",
-        width: isFullscreen ? "99.8vw" : "19.5vw",
-        height: isFullscreen ? "100vh" : "100px",
-        zIndex: isFullscreen ? "1000" : "auto",
-        position: isFullscreen ? "fixed" : "relative",
-        cursor: isFullscreen ? "default" : "pointer",
-        backgroundColor: isDone ? "grey" : "blue",
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100vw",
+        height: "100vh",
+        zIndex: 1000,
+        cursor: "default",
+        backgroundColor: "blue",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        fontSize: "3rem",
+        color: "white",
+        background: "linear-gradient(135deg, #001366, #003399)",
       }}
     >
-      <p>
-        {!isFullscreen
-          ? reward
-          : "Here one hint will appear in the near future"}
+      <p style={{ textAlign: "center", padding: "2rem" }}>
+        Here one hint will appear in the near future
       </p>
 
-      {isFullscreen ? (
-        <MdOutlineTransitEnterexit
-          style={{
-            position: "fixed",
-            right: "0",
-            top: "0",
-            cursor: "pointer",
-            fontSize: "2rem",
-          }}
-          onClick={(e) => {
-            e.stopPropagation();
-            toggleFullscreen(false);
-          }}
-        />
-      ) : null}
+      <MdOutlineTransitEnterexit
+        style={{
+          position: "fixed",
+          right: "20px",
+          top: "20px",
+          cursor: "pointer",
+          fontSize: "3rem",
+          color: "white",
+          backgroundColor: "rgba(0, 0, 0, 0.5)",
+          borderRadius: "50%",
+          padding: "10px",
+          zIndex: 1001,
+        }}
+        onClick={(e) => {
+          e.stopPropagation();
+          toggleFullscreen(false);
+        }}
+      />
     </div>
+  );
+
+  return (
+    <>
+      {/* Normalkort */}
+      <div
+        onClick={() => handleClick(true, rewardValue)}
+        className="card"
+        style={{
+          cursor: "pointer",
+          backgroundColor: isDone ? "grey" : "blue",
+        }}
+      >
+        <p>{reward}</p>
+      </div>
+
+      {/* Fullscreenkort*/}
+      {isFullscreen && ReactDOM.createPortal(<FullscreenCard />, document.body)}
+    </>
   );
 };
 

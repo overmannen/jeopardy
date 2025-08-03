@@ -37,15 +37,24 @@ export const GameViews = () => {
   };
 
   return (
-    <div>
+    <div className="games-container">
       <h3>Games:</h3>
       <ul>
         {games.map((game, id) => (
           <li key={id}>
-            <p className="selectGame">{game}</p>
-            <button onClick={() => handleDeleteClick(game)}>Delete</button>
-            <button onClick={editGame}>Edit</button>
-            <button onClick={() => playGame(game)}>Play</button>
+            <p className="select-game">{game}</p>
+            <button
+              className="btn-primary"
+              onClick={() => handleDeleteClick(game)}
+            >
+              Delete
+            </button>
+            <button className="btn-primary" onClick={editGame}>
+              Edit
+            </button>
+            <button className="btn-primary" onClick={() => playGame(game)}>
+              Play
+            </button>
           </li>
         ))}
       </ul>

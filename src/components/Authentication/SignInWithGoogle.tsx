@@ -11,7 +11,7 @@ export const SignInWithGoogle = () => {
   };
   return (
     <div>
-      <button className="btn btn-primary" onClick={signInWithGoogle}>
+      <button className="btn-primary" onClick={signInWithGoogle}>
         Sign In
       </button>
     </div>
