@@ -22,10 +22,16 @@ export const Home = () => {
         <SignInWithGoogle />
         {user && <LogoutGoogle />}
       </div>
-      {user ? <p>Welcome {user.displayName}</p> : <p>Not logged in</p>}
+      {user ? (
+        <p className="user-name">
+          Welcome <b>{user.displayName}</b>
+        </p>
+      ) : (
+        <p>Not logged in</p>
+      )}
       <p>
         Make a{" "}
-        <a className="newGame" href="/game">
+        <a className="new-game" href="/game">
           new game
         </a>
       </p>

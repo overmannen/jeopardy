@@ -11,7 +11,7 @@ export const LogoutGoogle = () => {
   };
   return (
     <div>
-      <button className="btn btn-secondary" onClick={logoutGoogle}>
+      <button className="btn-secondary" onClick={logoutGoogle}>
         {" "}
         Sign Out{" "}
       </button>
