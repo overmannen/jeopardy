@@ -29,12 +29,14 @@ export const Home = () => {
       ) : (
         <p>Not logged in</p>
       )}
-      <p>
-        Make a{" "}
-        <a className="new-game" href="/new-game">
-          new game
-        </a>
-      </p>
+      {user && (
+        <p>
+          Make a{" "}
+          <a className="new-game" href="/new-game">
+            new game
+          </a>
+        </p>
+      )}
       <GameViews />
     </div>
   );
