@@ -19,7 +19,7 @@ export const Home = () => {
     <div>
       <h1>Jeopardy</h1>
       <div className="authentication-container">
-        <SignInWithGoogle />
+        {!user && <SignInWithGoogle />}
         {user && <LogoutGoogle />}
       </div>
       {user ? (
@@ -31,7 +31,7 @@ export const Home = () => {
       )}
       <p>
         Make a{" "}
-        <a className="new-game" href="/game">
+        <a className="new-game" href="/new-game">
           new game
         </a>
       </p>

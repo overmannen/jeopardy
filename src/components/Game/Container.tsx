@@ -14,17 +14,22 @@ export const RewardContext = createContext<RewardContextType | undefined>(
 type ContainerProps = {
   name: string;
   teamNames: string[];
+  categories: string[];
 };
 
-const Container = ({ name, teamNames }: ContainerProps): JSX.Element => {
-  const categoryNames = ["Farger", "Dyr", "Steder", "Mat", "Sport"]; // Liste over kategorinavn
+const Container = ({
+  name,
+  teamNames,
+  categories,
+}: ContainerProps): JSX.Element => {
+  // Liste over kategorinavn
   const [rewardValue, setRewardValue] = useState<number>(0);
 
   return (
     <RewardContext.Provider value={{ rewardValue, setRewardValue }}>
       <h1 className="title">{name}</h1>
       <div className="container">
-        {categoryNames.map((categoryName, index) => (
+        {categories.map((categoryName, index) => (
           <Category key={index} categoryName={categoryName} />
         ))}
       </div>

@@ -69,9 +69,7 @@ const Card = ({ reward, rewardValue }: CardProps): JSX.Element => {
         background: "linear-gradient(135deg, #001366, #003399)",
       }}
     >
-      <p style={{ textAlign: "center", padding: "2rem" }}>
-        Here one hint will appear in the near future
-      </p>
+      <p style={{ textAlign: "center", padding: "2rem" }}>{reward}</p>
 
       <MdOutlineTransitEnterexit
         style={{

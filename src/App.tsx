@@ -2,6 +2,7 @@ import { Navbar } from "./components/Navbar";
 import { PlayGame } from "./pages/PlayGame";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home } from "./pages/Home";
+import { NewGame } from "./pages/NewGame";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/play/:gameId" element={<PlayGame />} />
+          <Route path="new-game" element={<NewGame />} />
         </Routes>
       </BrowserRouter>
       <div id="modal-root"></div>
