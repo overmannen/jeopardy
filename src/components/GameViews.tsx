@@ -1,51 +1,125 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import WarningModal from "./WarningModal";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore";
+import { auth, db } from "../firebase/config";
+import { useAuthState } from "react-firebase-hooks/auth";
+
+export type Game = {
+  id: string;
+  name: string;
+  categories?: Category[];
+  userId?: string;
+};
+
+export type Category = {
+  id: string;
+  name: string;
+  belongsTo: string;
+};
 
 export const GameViews = () => {
-  const [games, setGames] = useState(["Game_1", "Game_2", "Game_3"]);
+  const [gamesList, setGamesList] = useState<Game[]>([]);
   const navigate = useNavigate();
 
+  const [user, loading] = useAuthState(auth);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [gameToDelete, setGameToDelete] = useState<string | null>(null);
+  const [gameIdToDelete, setGameIdToDelete] = useState<string | null>(null);
 
-  const handleDeleteClick = (game: string) => {
-    setGameToDelete(game);
+  const handleDeleteClick = async (id: string) => {
+    setGameIdToDelete(id);
     setIsModalOpen(true);
-  };
-
-  const confirmDelete = () => {
-    if (gameToDelete) {
-      setGames((prevGames) =>
-        prevGames.filter((game) => game !== gameToDelete)
-      );
-      setGameToDelete(null);
-    }
-    setIsModalOpen(false);
   };
 
   const cancelDelete = () => {
     setIsModalOpen(false);
-    setGameToDelete(null);
+    setGameIdToDelete(null);
   };
 
-  const playGame = (game: string) => {
-    navigate(`/play/${game}`);
+  const playGame = (game: Game) => {
+    navigate(`/play/${game?.id}`, { state: { game } });
   };
+
   const editGame = () => {
     return;
   };
+
+  const gameCollectionRef = useMemo(() => {
+    return collection(db, "games");
+  }, []);
+
+  const getGamesList = async () => {
+    if (!user) {
+      setGamesList([]);
+      return;
+    }
+    try {
+      const gamesQuery = query(
+        gameCollectionRef,
+        where("userId", "==", user.uid)
+      );
+
+      const data = await getDocs(gamesQuery);
+      const filteredData = data.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      })) as Game[];
+      setGamesList(filteredData);
+    } catch (error) {
+      console.error(error);
+      setGamesList([]);
+    }
+  };
+
+  useEffect(() => {
+    if (!loading) {
+      getGamesList();
+    }
+  }, [user, loading]);
+
+  const confirmDelete = async () => {
+    if (gameIdToDelete) {
+      try {
+        const gameDoc = doc(db, "games", gameIdToDelete);
+        await deleteDoc(gameDoc);
+        setGamesList((prevGames) =>
+          prevGames.filter((game) => game.id !== gameIdToDelete)
+        );
+        setGameIdToDelete(null);
+        setIsModalOpen(false);
+        getGamesList();
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
+
+  if (!user) {
+    return (
+      <div className="games-container">
+        <p>Log in to view your games</p>
+      </div>
+    );
+  }
 
   return (
     <div className="games-container">
       <h3>Games:</h3>
       <ul>
-        {games.map((game, id) => (
-          <li key={id}>
-            <p className="select-game">{game}</p>
+        {gamesList.map((game) => (
+          <li key={game.id}>
+            <p className="select-game">{game.name}</p>
             <button
               className="btn-primary"
-              onClick={() => handleDeleteClick(game)}
+              onClick={() => handleDeleteClick(game.id)}
             >
               Delete
             </button>

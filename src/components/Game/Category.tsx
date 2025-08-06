@@ -11,7 +11,7 @@ const Category = ({ categoryName }: CategoryProps): JSX.Element => {
   return (
     <div className="category">
       <h3 className="category-title">{categoryName}</h3>
-      <div category-container></div>
+      <div className="category-container"></div>
       {rewards.map((reward, index) => (
         <Card
           rewardValue={reward}

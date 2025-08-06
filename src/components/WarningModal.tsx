@@ -27,7 +27,7 @@ const WarningModal = ({
   return ReactDOM.createPortal(
     <div className="modal-overlay">
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <p>{message}</p>
+        <p className="warning-message">{message}</p>
         <div className="modal-actions">
           <button onClick={onConfirm} className="confirm-button">
             Jeg er sikker
