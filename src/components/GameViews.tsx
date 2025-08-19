@@ -48,10 +48,6 @@ export const GameViews = () => {
     navigate(`/play/${game?.id}`, { state: { game } });
   };
 
-  const editGame = () => {
-    return;
-  };
-
   const gameCollectionRef = useMemo(() => {
     return collection(db, "games");
   }, []);
@@ -122,9 +118,6 @@ export const GameViews = () => {
               onClick={() => handleDeleteClick(game.id)}
             >
               Delete
-            </button>
-            <button className="btn-primary" onClick={editGame}>
-              Edit
             </button>
             <button className="btn-primary" onClick={() => playGame(game)}>
               Play
