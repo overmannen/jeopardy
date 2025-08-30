@@ -1,6 +1,7 @@
 #root {
   margin: 0;
   padding: 0;
+  padding-left: 10px;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -30,6 +31,7 @@ body {
   font-weight: bold;
   font-size: 1.1rem;
   transition: color 0.3s ease;
+  padding-left: 1rem;
 }
 
 .navbar a:hover {

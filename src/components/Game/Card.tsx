@@ -21,19 +21,20 @@ const Card = ({ reward, rewardValue }: CardProps): JSX.Element => {
 
   const toggleFullscreen = (e: boolean) => {
     setIsFullscreen(e);
-    if (!e) {
-      setIsDone(true);
+    setIsDone(!e);
+  };
+
+  const handleClick = (reward: number) => {
+    if (isDone) {
+      setIsDone(false);
+    } else if (!isFullscreen) {
+      setIsFullscreen(true);
+      setRewardValue(reward);
     }
   };
-
-  const handleClick = (e: boolean, reward: number) => {
-    toggleFullscreen(e);
-    setRewardValue(reward);
-  };
-
   useEffect(() => {
     const handleEscapeKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
+      if (e.key === "Escape" || e.key == " ") {
         toggleFullscreen(false);
       }
     };
@@ -96,7 +97,7 @@ const Card = ({ reward, rewardValue }: CardProps): JSX.Element => {
     <>
       {/* Normalkort */}
       <div
-        onClick={() => handleClick(true, rewardValue)}
+        onClick={() => handleClick(rewardValue)}
         className="card"
         style={{
           cursor: "pointer",
